@@ -3,23 +3,23 @@ use std::cmp::Ordering;
 use std::io;
 
 fn main() {
-    println!("Guess the number game");
+    println!("Guessing Game");
 
     let secret_number = rand::rng().random_range(1..=100);
 
-    println!("Enter your guess");
-
     loop {
+        println!("Enter your guess number");
+
         let mut guess = String::new();
 
         io::stdin()
             .read_line(&mut guess)
-            .expect("Failed to get user input");
+            .expect("Failed to get the input");
 
         let guess: u32 = match guess.trim().parse() {
             Ok(num) => num,
             Err(_) => {
-                println!("Error");
+                println!("Enter a number");
                 continue;
             }
         };
@@ -33,6 +33,6 @@ fn main() {
             Ordering::Greater => println!("Big Number"),
         }
 
-        println!("Your Guess {guess}");
+        println!("You guessed {}", guess);
     }
 }
